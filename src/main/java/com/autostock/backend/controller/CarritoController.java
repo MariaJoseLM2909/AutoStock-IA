@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/carrito")
 @RequiredArgsConstructor
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
+// v0.5: CU-12 agregar item, CU-13 modificar cantidad, CU-14 eliminar item
 public class CarritoController {
 
     private final CarritoService carritoService;
