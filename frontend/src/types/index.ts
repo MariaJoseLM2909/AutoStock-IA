@@ -13,6 +13,7 @@ export interface AuthResponse {
 
 export interface Producto {
   id: number;
+  idProducto?: number;
   nombre: string;
   descripcion: string;
   precio: number;
@@ -32,9 +33,12 @@ export interface Compatibilidad {
 
 export interface ItemCarrito {
   id: number;
-  producto: Producto;
+  idItemCarrito?: number;
+  nombreProducto?: string;
+  producto?: Producto;
   cantidad: number;
   subtotal: number;
+  precioUnitario?: number;
 }
 
 export interface Carrito {

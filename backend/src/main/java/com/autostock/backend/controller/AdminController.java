@@ -14,12 +14,17 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
 public class AdminController {
 
     private final ProductoService productoService;
     private final StockService stockService;
     private final ReporteService reporteService;
+
+    @GetMapping("/productos")
+    public ResponseEntity<List<ProductoDTO>> listarProductos() {
+        return ResponseEntity.ok(productoService.listarTodos());
+    }
 
     @PostMapping("/productos")
     public ResponseEntity<ProductoDTO> crearProducto(@RequestBody ProductoDTO dto) {

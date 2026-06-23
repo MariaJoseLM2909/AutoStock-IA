@@ -23,8 +23,9 @@ export default function AdminStockPage() {
   const fetchStock = useCallback(async () => {
     setLoading(true);
     try {
-      const { data } = await api.get<ReporteStock[]>('/admin/reportes/stock');
-      setItems(data);
+      const { data } = await api.get<any>('/admin/stock');
+      const arr = Array.isArray(data) ? data : [];
+      setItems(arr.map((p) => ({ ...p, id: p.idProducto, nombre: p.nombre, categoria: p.categoria, stock: p.stock, estado: p.stock === 0 ? 'AGOTADO' : p.stock <= 3 ? 'CRITICO' : p.stock <= 5 ? 'BAJO' : 'OK' })));
     } catch { setItems([]); }
     finally { setLoading(false); }
   }, []);

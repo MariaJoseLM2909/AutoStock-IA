@@ -71,12 +71,12 @@ export default function CarritoPage() {
                     <span className={styles.itemMarca}></span>
                   </div>
                   <div className={styles.cantControl}>
-                    <button onClick={() => updateCantidad(item.idItemCarrito, item.cantidad - 1)} disabled={updatingId === item.idItemCarrito}>-</button>
+                    <button onClick={() => updateCantidad(item.idItemCarrito!, item.cantidad - 1)} disabled={updatingId === item.idItemCarrito!}>-</button>
                     <span>{item.cantidad}</span>
-                    <button onClick={() => updateCantidad(item.idItemCarrito, item.cantidad + 1)} disabled={updatingId === item.idItemCarrito}>+</button>
+                    <button onClick={() => updateCantidad(item.idItemCarrito!, item.cantidad + 1)} disabled={updatingId === item.idItemCarrito!}>+</button>
                   </div>
                   <span className={styles.subtotal}>${item.subtotal.toLocaleString('es-AR')}</span>
-                  <button className={styles.eliminar} onClick={() => eliminarItem(item.idItemCarrito)} disabled={updatingId === item.idItemCarrito}>✕</button>
+                  <button className={styles.eliminar} onClick={() => eliminarItem(item.idItemCarrito!)} disabled={updatingId === item.idItemCarrito!}>✕</button>
                 </div>
               ))}
             </div>
