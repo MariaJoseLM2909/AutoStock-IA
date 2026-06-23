@@ -1,0 +1,39 @@
+﻿.root { display: flex; min-height: 100vh; }
+.sidebar {
+  width: 220px; background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  position: sticky; top: 0; height: 100vh;
+}
+.sidebarTop {
+  padding: 24px 20px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 12px;
+}
+.adminBadge {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--yellow);
+  background: var(--yellow-dim); padding: 3px 8px; border-radius: 4px;
+  align-self: flex-start;
+}
+.sidebarNav { flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; }
+.navItem {
+  padding: 10px 12px; border-radius: var(--radius-sm);
+  color: var(--text-secondary); font-size: 14px; font-weight: 500;
+  transition: all var(--transition);
+}
+.navItem:hover { color: var(--text-primary); background: var(--bg-card); }
+.active { color: var(--yellow) !important; background: var(--yellow-dim) !important; }
+.sidebarBottom {
+  padding: 16px 20px; border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.userInfo { font-size: 13px; color: var(--text-secondary); }
+.logoutBtn {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 13px; text-align: left; padding: 0;
+  transition: color var(--transition);
+}
+.logoutBtn:hover { color: var(--error); }
+.content { flex: 1; overflow: auto; }
+.main { padding: 32px; }

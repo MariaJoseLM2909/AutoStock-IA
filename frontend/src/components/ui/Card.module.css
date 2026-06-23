@@ -1,0 +1,7 @@
+﻿.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); transition: border-color var(--transition);
+}
+.sm { padding: 16px; }
+.md { padding: 24px; }
+.lg { padding: 32px; }

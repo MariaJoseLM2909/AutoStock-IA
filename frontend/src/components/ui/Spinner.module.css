@@ -1,0 +1,8 @@
+﻿.wrapper { display: flex; align-items: center; justify-content: center; padding: 40px; }
+.spin {
+  border: 3px solid var(--border);
+  border-top-color: var(--yellow);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

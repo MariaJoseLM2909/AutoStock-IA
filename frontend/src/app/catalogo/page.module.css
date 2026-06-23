@@ -1,0 +1,46 @@
+﻿.header { display: flex; align-items: baseline; gap: 16px; padding: 40px 0 24px; }
+.title { font-size: 1.8rem; font-weight: 700; }
+.count { color: var(--text-muted); font-size: 0.9rem; }
+
+.filters {
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 16px; margin-bottom: 28px;
+}
+.filterInput {
+  flex: 1; min-width: 160px; background: var(--bg-input);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text-primary); padding: 8px 12px; font-size: 14px; outline: none;
+  transition: border-color var(--transition);
+}
+.filterInput:focus { border-color: var(--border-focus); }
+.filterInput::placeholder { color: var(--text-muted); }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+
+.card {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  display: flex; flex-direction: column;
+}
+.card:hover { border-color: var(--yellow); transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+.cardImg {
+  height: 140px; background: var(--bg-secondary);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.cardImg img { width: 100%; height: 100%; object-fit: cover; }
+.noImg { font-size: 2.5rem; }
+
+.cardBody { padding: 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.categoria { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--yellow); }
+.nombre { font-size: 0.95rem; font-weight: 600; line-height: 1.3; }
+.marca { font-size: 0.85rem; color: var(--text-muted); }
+.cardFooter { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 12px; }
+.precio { font-size: 1.1rem; font-weight: 700; color: var(--yellow); }
+
+.empty { text-align: center; padding: 80px 0; color: var(--text-muted); font-size: 1rem; }
+
+.pagination { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 40px 0; }
+.pageInfo { font-size: 14px; color: var(--text-secondary); }

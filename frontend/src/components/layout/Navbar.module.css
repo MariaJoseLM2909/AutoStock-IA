@@ -1,0 +1,19 @@
+﻿.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(26,26,26,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px; gap: 24px;
+}
+.links { display: flex; align-items: center; gap: 4px; flex: 1; padding-left: 24px; }
+.link {
+  padding: 6px 12px; border-radius: var(--radius-sm);
+  color: var(--text-secondary); font-size: 14px; font-weight: 500;
+  transition: color var(--transition), background var(--transition);
+}
+.link:hover { color: var(--yellow); background: var(--yellow-dim); }
+.actions { display: flex; align-items: center; gap: 10px; }
+.userName { font-size: 14px; color: var(--text-secondary); }

@@ -1,0 +1,33 @@
+﻿.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; border: none; border-radius: var(--radius-md);
+  font-weight: 600; transition: background var(--transition), opacity var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn:not(:disabled):active { transform: scale(0.97); }
+
+.primary { background: var(--yellow); color: var(--text-dark); }
+.primary:not(:disabled):hover { background: var(--yellow-hover); }
+
+.secondary { background: var(--bg-card); color: var(--text-primary); border: 1px solid var(--border); }
+.secondary:not(:disabled):hover { border-color: var(--yellow); color: var(--yellow); }
+
+.ghost { background: transparent; color: var(--text-secondary); }
+.ghost:not(:disabled):hover { color: var(--yellow); background: var(--yellow-dim); }
+
+.danger { background: var(--error); color: #fff; }
+.danger:not(:disabled):hover { background: #dc2626; }
+
+.sm { padding: 6px 14px; font-size: 13px; }
+.md { padding: 10px 20px; font-size: 14px; }
+.lg { padding: 13px 28px; font-size: 16px; }
+
+.full { width: 100%; }
+
+.spinner {
+  width: 16px; height: 16px; border: 2px solid transparent;
+  border-top-color: currentColor; border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }

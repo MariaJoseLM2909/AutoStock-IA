@@ -1,0 +1,34 @@
+.back { background: none; border: none; color: var(--text-muted); font-size: 14px; padding: 28px 0 20px; cursor: pointer; transition: color var(--transition); }
+.back:hover { color: var(--yellow); }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding-bottom: 48px; }
+.imgWrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.imgWrap img { width: 100%; height: 100%; object-fit: cover; }
+.noImg { font-size: 5rem; }
+.info { display: flex; flex-direction: column; gap: 14px; padding: 8px 0; }
+.cat { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--yellow); }
+.nombre { font-size: 1.7rem; font-weight: 700; line-height: 1.2; }
+.marca { font-size: 0.9rem; color: var(--text-secondary); }
+.desc { color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem; }
+.priceRow { display: flex; align-items: center; gap: 16px; }
+.precio { font-size: 2rem; font-weight: 800; color: var(--yellow); }
+.cantRow { display: flex; align-items: center; gap: 16px; }
+.cantLabel { font-size: 13px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; }
+.cantControl { display: flex; align-items: center; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+.cantControl button { background: none; border: none; color: var(--text-primary); width: 36px; height: 36px; font-size: 1.1rem; transition: background var(--transition); }
+.cantControl button:hover { background: var(--border); }
+.cantControl span { width: 40px; text-align: center; font-weight: 600; }
+.cartMsg { font-size: 14px; color: var(--success); }
+.section { border-top: 1px solid var(--border); padding: 36px 0; }
+.sectionTitle { font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; }
+.iaHeader { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.iaHeader .sectionTitle { margin-bottom: 0; }
+.compatGrid { display: flex; flex-wrap: wrap; gap: 10px; }
+.compatCard { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 10px 16px; display: flex; gap: 8px; align-items: center; font-size: 14px; }
+.compatMarca { font-weight: 700; color: var(--yellow); }
+.compatAnio { color: var(--text-muted); }
+.sugGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; }
+.sugCard { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; gap: 6px; transition: border-color var(--transition); }
+.sugCard:hover { border-color: var(--yellow); }
+.sugCat { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--yellow); }
+.sugNombre { font-size: 0.9rem; font-weight: 600; }
+.sugPrecio { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-top: auto; }

@@ -1,0 +1,15 @@
+﻿.header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 28px; gap: 20px; }
+.title { font-size: 1.6rem; font-weight: 700; }
+.sub { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+.search { background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-primary); padding: 9px 14px; font-size: 14px; outline: none; min-width: 260px; transition: border-color var(--transition); }
+.search:focus { border-color: var(--border-focus); }
+.search::placeholder { color: var(--text-muted); }
+.tableWrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.table { width: 100%; border-collapse: collapse; }
+.table th { background: var(--bg-secondary); padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+.table td { padding: 13px 16px; border-top: 1px solid var(--border); vertical-align: middle; }
+.table tr:hover td { background: var(--bg-secondary); }
+.nombre { font-weight: 600; font-size: 0.9rem; }
+.stockNum { font-weight: 700; font-size: 1rem; }
+.editRow { display: flex; align-items: center; gap: 8px; }
+.stockInput { background: var(--bg-input); border: 1px solid var(--border-focus); border-radius: var(--radius-sm); color: var(--text-primary); padding: 6px 10px; width: 80px; font-size: 14px; outline: none; }

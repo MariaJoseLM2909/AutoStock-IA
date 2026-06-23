@@ -1,0 +1,22 @@
+﻿.title { font-size: 1.6rem; font-weight: 700; margin-bottom: 24px; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 28px; }
+@media (max-width: 800px) { .kpis { grid-template-columns: repeat(2, 1fr); } }
+.kpi { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+.kpiVal { font-size: 2rem; font-weight: 800; color: var(--yellow); }
+.kpiWarn { color: var(--error) !important; }
+.kpiLabel { font-size: 13px; color: var(--text-muted); }
+.tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+.tab { background: none; border: none; color: var(--text-secondary); padding: 10px 18px; font-size: 14px; font-weight: 500; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all var(--transition); display: flex; align-items: center; gap: 8px; }
+.tab:hover { color: var(--text-primary); }
+.active { color: var(--yellow) !important; border-bottom-color: var(--yellow) !important; }
+.badge { background: var(--error); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 99px; }
+.tableWrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.table { width: 100%; border-collapse: collapse; }
+.table th { background: var(--bg-secondary); padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); }
+.table td { padding: 13px 16px; border-top: 1px solid var(--border); vertical-align: middle; font-size: 0.9rem; }
+.table tr:hover td { background: var(--bg-secondary); }
+.catNombre { font-weight: 600; }
+.bold { font-weight: 700; }
+.barWrap { background: var(--bg-secondary); border-radius: 99px; height: 6px; width: 120px; overflow: hidden; }
+.bar { background: var(--yellow); height: 100%; border-radius: 99px; transition: width 0.3s ease; min-width: 2px; }
+.empty { text-align: center; color: var(--text-muted); padding: 40px !important; }

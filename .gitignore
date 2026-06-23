@@ -1,0 +1,15 @@
+﻿# Node
+frontend/node_modules/
+frontend/.next/
+frontend/.env*.local
+
+# Java
+backend/target/
+backend/.idea/
+*.class
+*.jar
+
+# General
+.DS_Store
+Thumbs.db
+*.env

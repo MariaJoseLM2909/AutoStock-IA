@@ -1,0 +1,26 @@
+﻿.title { font-size: 1.8rem; font-weight: 700; padding: 40px 0 28px; }
+.empty { text-align: center; padding: 80px 0; display: flex; flex-direction: column; align-items: center; gap: 20px; color: var(--text-muted); }
+.layout { display: grid; grid-template-columns: 1fr 320px; gap: 28px; padding-bottom: 60px; }
+@media (max-width: 800px) { .layout { grid-template-columns: 1fr; } }
+.items { display: flex; flex-direction: column; gap: 12px; }
+.item {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 16px 20px;
+  display: flex; align-items: center; gap: 16px;
+}
+.itemImg { width: 48px; height: 48px; background: var(--bg-secondary); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.itemInfo { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.itemNombre { font-weight: 600; font-size: 0.95rem; }
+.itemMarca { font-size: 0.82rem; color: var(--text-muted); }
+.cantControl { display: flex; align-items: center; background: var(--bg-input); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.cantControl button { background: none; border: none; color: var(--text-primary); width: 30px; height: 30px; font-size: 1rem; cursor: pointer; }
+.cantControl button:disabled { opacity: 0.4; }
+.cantControl span { width: 32px; text-align: center; font-size: 14px; font-weight: 600; }
+.subtotal { font-weight: 700; min-width: 90px; text-align: right; color: var(--yellow); }
+.eliminar { background: none; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer; padding: 4px 8px; transition: color var(--transition); }
+.eliminar:hover { color: var(--error); }
+.resumen { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; gap: 14px; height: fit-content; position: sticky; top: 80px; }
+.resumenTitle { font-size: 1.1rem; font-weight: 700; }
+.resumenRow { display: flex; justify-content: space-between; font-size: 14px; color: var(--text-secondary); }
+.resumenTotal { display: flex; justify-content: space-between; font-weight: 700; padding-top: 12px; border-top: 1px solid var(--border); }
+.totalAmount { color: var(--yellow); font-size: 1.2rem; }

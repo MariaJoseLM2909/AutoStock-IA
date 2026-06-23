@@ -1,50 +1,58 @@
-'use client';
-
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Usuario } from '@/lib/types';
+﻿'use client';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { Usuario } from '@/types';
 
 interface AuthContextType {
   user: Usuario | null;
-  login: (user: Usuario, token: string) => void;
+  token: string | null;
+  login: (token: string, user: Usuario) => void;
   logout: () => void;
-  isLoading: boolean;
+  isAdmin: boolean;
+  isAuthenticated: boolean;
+  authLoading: boolean;
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<Usuario | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [token, setToken] = useState<string | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
   useEffect(() => {
-    const stored = localStorage.getItem('user');
-    if (stored) {
-      setUser(JSON.parse(stored));
+    const t = localStorage.getItem('token');
+    const u = localStorage.getItem('user');
+    if (t && u) {
+      setToken(t);
+      setUser(JSON.parse(u));
     }
-    setIsLoading(false);
+    setAuthLoading(false);
   }, []);
 
-  const login = (userData: Usuario, token: string) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(userData));
-    setUser(userData);
+  const login = (t: string, u: Usuario) => {
+    localStorage.setItem('token', t);
+    localStorage.setItem('user', JSON.stringify(u));
+    setToken(t);
+    setUser(u);
   };
 
   const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    setToken(null);
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
+    <AuthContext.Provider value={{
+      user, token, login, logout,
+      isAdmin: user?.rol === 'ADMINISTRADOR',
+      isAuthenticated: !!token,
+      authLoading,
+    }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within AuthProvider');
-  return context;
-}
+export const useAuth = () => useContext(AuthContext);
