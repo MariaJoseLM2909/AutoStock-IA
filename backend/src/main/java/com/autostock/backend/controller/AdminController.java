@@ -14,8 +14,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/admin")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
-// v0.3: CU-04 alta producto, CU-05 modificar, CU-06 baja, CU-07 stock, CU-08 compatibilidad
+@CrossOrigin(origins = "http://localhost:3000")
 public class AdminController {
 
     private final ProductoService productoService;

@@ -25,9 +25,9 @@ export default function CatalogoPage() {
       if (search.nombre) params.nombre = search.nombre;
       if (search.categoria) params.categoria = search.categoria;
       if (search.marca) params.marca = search.marca;
-      const { data } = await api.get<PaginatedResponse<Producto>>('/productos', { params });
-      setProductos(data.content);
-      setTotal(data.totalElements);
+      const { data } = await api.get<any>('/productos', { params });
+      setProductos(Array.isArray(data) ? data : (data.content ?? []));
+      setTotal(Array.isArray(data) ? data.length : (data.totalElements ?? 0));
     } catch {
       setProductos([]);
     } finally {

@@ -1,4 +1,6 @@
-﻿'use client';
+'use client';
+import dynamic from 'next/dynamic';
+﻿
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -9,7 +11,7 @@ import Input from '@/components/ui/Input';
 import Logo from '@/components/ui/Logo';
 import styles from './page.module.css';
 
-export default function RegisterPage() {
+function RegisterPage() {
   const router = useRouter();
   const { login } = useAuth();
   const [form, setForm] = useState({ nombre: '', apellido: '', email: '', password: '' });
@@ -67,3 +69,5 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+export default dynamic(() => Promise.resolve(RegisterPage), { ssr: false });

@@ -4,9 +4,11 @@ import com.autostock.backend.dto.*;
 import com.autostock.backend.entity.*;
 import com.autostock.backend.repository.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
@@ -14,11 +16,12 @@ public class AuthService {
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     @Transactional
-    public UsuarioDTO registrar(RegistroRequestDTO dto) {
+    public AuthResponseDTO registrar(RegistroRequestDTO dto) {
         if (usuarioRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("El correo ya se encuentra registrado");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "El correo ya se encuentra registrado");
         }
 
         Usuario usuario = Usuario.builder()
@@ -31,23 +34,26 @@ public class AuthService {
                 .build();
 
         Usuario guardado = usuarioRepository.save(usuario);
-
-        return mapToDTO(guardado);
+        UsuarioDTO usuarioDTO = mapToDTO(guardado);
+        String token = jwtService.generateToken(guardado.getEmail(), guardado.getRol().name());
+        return new AuthResponseDTO(token, usuarioDTO);
     }
 
-    public UsuarioDTO login(LoginRequestDTO dto) {
+    public AuthResponseDTO login(LoginRequestDTO dto) {
         Usuario usuario = usuarioRepository.findByEmail(dto.getEmail())
-                .orElseThrow(() -> new RuntimeException("Correo o contraseña incorrectos"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Correo o contraseña incorrectos"));
 
         if (!passwordEncoder.matches(dto.getPassword(), usuario.getPassword())) {
-            throw new RuntimeException("Correo o contraseña incorrectos");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Correo o contraseña incorrectos");
         }
 
         if (!usuario.getActivo()) {
-            throw new RuntimeException("Usuario inactivo");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Usuario inactivo");
         }
 
-        return mapToDTO(usuario);
+        UsuarioDTO usuarioDTO = mapToDTO(usuario);
+        String token = jwtService.generateToken(usuario.getEmail(), usuario.getRol().name());
+        return new AuthResponseDTO(token, usuarioDTO);
     }
 
     private UsuarioDTO mapToDTO(Usuario usuario) {

@@ -20,6 +20,7 @@ export interface Producto {
   categoria: string;
   marca: string;
   imagen?: string;
+  imagenUrl?: string;
 }
 
 export interface Compatibilidad {
