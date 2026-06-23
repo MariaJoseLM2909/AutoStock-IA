@@ -79,7 +79,7 @@ export default function CatalogoPage() {
             ) : (
               <div className={styles.grid}>
                 {productos.map(p => (
-                  <Link href={`/producto/${p.id}`} key={p.id} className={styles.card}>
+                  <Link href={"/producto/" + (p.idProducto ?? p.id)} key={p.idProducto ?? p.id} className={styles.card}>
                     <div className={styles.cardImg}>
                       {p.imagen ? <img src={p.imagen} alt={p.nombre} /> : <span className={styles.noImg}>🔧</span>}
                     </div>

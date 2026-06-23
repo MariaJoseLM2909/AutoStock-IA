@@ -25,14 +25,10 @@ export default function ProductoDetallePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [prodRes, compatRes, sugRes] = await Promise.all([
-          api.get('/productos/' + id),
-          api.get('/productos/' + id + '/compatibilidades'),
-          api.get('/productos/' + id + '/sugerencias'),
-        ]);
+        const prodRes = await api.get('/productos/' + id);
         setProducto(prodRes.data);
-        setCompatibilidades(compatRes.data);
-        setSugerencias(sugRes.data);
+        try { const cr = await api.get('/productos/' + id + '/compatibilidades'); setCompatibilidades(cr.data); } catch {}
+        try { const sr = await api.get('/productos/' + id + '/sugerencias'); setSugerencias(sr.data); } catch {}
       } catch {
         router.push('/catalogo');
       } finally {
