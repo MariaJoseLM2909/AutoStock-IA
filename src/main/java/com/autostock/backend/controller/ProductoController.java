@@ -12,6 +12,7 @@ import java.util.List;
 @RequestMapping("/api/productos")
 @RequiredArgsConstructor
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:3001"})
+// v0.4: CU-09 catalogo, CU-10 busqueda filtros, CU-11 detalle producto
 public class ProductoController {
 
     private final ProductoService productoService;
