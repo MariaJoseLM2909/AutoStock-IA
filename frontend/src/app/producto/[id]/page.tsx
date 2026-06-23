@@ -42,7 +42,7 @@ export default function ProductoDetallePage() {
     if (!isAuthenticated) { router.push('/login'); return; }
     setAddingCart(true);
     try {
-      await api.post('/carrito/items', { productoId: Number(id), cantidad });
+      const u = JSON.parse(localStorage.getItem('user') || '{}'); await api.post('/carrito/items', { idUsuario: u.idUsuario, idProducto: Number(id), cantidad });
       setMsg('Agregado al carrito');
       setTimeout(() => setMsg(''), 3000);
     } catch {

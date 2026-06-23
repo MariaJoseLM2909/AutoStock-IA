@@ -10,20 +10,21 @@ import Spinner from '@/components/ui/Spinner';
 import styles from './page.module.css';
 
 export default function CarritoPage() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, authLoading } = useAuth();
   const router = useRouter();
   const [carrito, setCarrito] = useState<Carrito | null>(null);
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState<number | null>(null);
 
   useEffect(() => {
+    if (authLoading) return;
     if (!isAuthenticated) { router.push('/login'); return; }
     fetchCarrito();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, authLoading]);
 
   const fetchCarrito = async () => {
     try {
-      const { data } = await api.get<Carrito>('/carrito');
+      const u = JSON.parse(localStorage.getItem('user') || '{}'); const { data } = await api.get('/carrito', { params: { idUsuario: u.idUsuario } });
       setCarrito(data);
     } catch { setCarrito(null); }
     finally { setLoading(false); }
@@ -33,7 +34,7 @@ export default function CarritoPage() {
     if (cantidad < 1) return;
     setUpdatingId(itemId);
     try {
-      await api.put(`/carrito/items/${itemId}`, { cantidad });
+      await api.put('/carrito/items/' + itemId, null, { params: { cantidad } });
       await fetchCarrito();
     } finally { setUpdatingId(null); }
   };
@@ -63,19 +64,19 @@ export default function CarritoPage() {
           <div className={styles.layout}>
             <div className={styles.items}>
               {items.map(item => (
-                <div key={item.id} className={styles.item}>
+                <div key={item.idItemCarrito} className={styles.item}>
                   <div className={styles.itemImg}>🔧</div>
                   <div className={styles.itemInfo}>
-                    <span className={styles.itemNombre}>{item.producto.nombre}</span>
-                    <span className={styles.itemMarca}>{item.producto.marca}</span>
+                    <span className={styles.itemNombre}>{item.nombreProducto}</span>
+                    <span className={styles.itemMarca}></span>
                   </div>
                   <div className={styles.cantControl}>
-                    <button onClick={() => updateCantidad(item.id, item.cantidad - 1)} disabled={updatingId === item.id}>-</button>
+                    <button onClick={() => updateCantidad(item.idItemCarrito, item.cantidad - 1)} disabled={updatingId === item.idItemCarrito}>-</button>
                     <span>{item.cantidad}</span>
-                    <button onClick={() => updateCantidad(item.id, item.cantidad + 1)} disabled={updatingId === item.id}>+</button>
+                    <button onClick={() => updateCantidad(item.idItemCarrito, item.cantidad + 1)} disabled={updatingId === item.idItemCarrito}>+</button>
                   </div>
                   <span className={styles.subtotal}>${item.subtotal.toLocaleString('es-AR')}</span>
-                  <button className={styles.eliminar} onClick={() => eliminarItem(item.id)} disabled={updatingId === item.id}>✕</button>
+                  <button className={styles.eliminar} onClick={() => eliminarItem(item.idItemCarrito)} disabled={updatingId === item.idItemCarrito}>✕</button>
                 </div>
               ))}
             </div>
