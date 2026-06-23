@@ -42,7 +42,7 @@ export default function AdminStockPage() {
     if (isNaN(val) || val < 0) return;
     setSaving(true);
     try {
-      await api.put(`/admin/stock/${id}`, { cantidad: val });
+      await api.put('/admin/stock/' + id, null, { params: { cantidad: val } });
       setEditId(null); setNewStock('');
       fetchStock();
     } finally { setSaving(false); }
