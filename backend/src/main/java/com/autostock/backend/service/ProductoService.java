@@ -108,16 +108,36 @@ public class ProductoService {
         Producto producto = productoRepository.findById(idProducto)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-        // HEURÍSTICA: sugerir productos de misma categoría o marca, excluyendo el actual
-        List<Producto> sugerencias = productoRepository.findAll().stream()
-                .filter(p -> !p.getIdProducto().equals(idProducto))
-                .filter(p -> p.getActivo())
-                .filter(p -> p.getCategoria().equalsIgnoreCase(producto.getCategoria())
-                        || p.getMarca().equalsIgnoreCase(producto.getMarca()))
-                .limit(4)
+        // Obtener marcas de vehículo compatibles con el producto actual
+        List<String> marcasVehiculo = producto.getCompatibilidades().stream()
+                .map(c -> c.getMarcaVehiculo().toLowerCase())
+                .distinct()
                 .collect(Collectors.toList());
 
-        return sugerencias.stream()
+        List<Producto> todos = productoRepository.findAll().stream()
+                .filter(p -> !p.getIdProducto().equals(idProducto))
+                .filter(p -> p.getActivo())
+                .collect(Collectors.toList());
+
+        // Prioridad 1: misma compatibilidad de vehículo
+        List<Producto> porCompatibilidad = todos.stream()
+                .filter(p -> p.getCompatibilidades().stream()
+                        .anyMatch(c -> marcasVehiculo.contains(c.getMarcaVehiculo().toLowerCase())))
+                .collect(Collectors.toList());
+
+        // Prioridad 2: misma categoria
+        List<Producto> porCategoria = todos.stream()
+                .filter(p -> p.getCategoria().equalsIgnoreCase(producto.getCategoria()))
+                .filter(p -> porCompatibilidad.stream().noneMatch(c -> c.getIdProducto().equals(p.getIdProducto())))
+                .collect(Collectors.toList());
+
+        // Combinar: compatibilidad primero, luego categoria, limite 4
+        List<Producto> resultado = new java.util.ArrayList<>();
+        resultado.addAll(porCompatibilidad);
+        resultado.addAll(porCategoria);
+
+        return resultado.stream()
+                .limit(4)
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
