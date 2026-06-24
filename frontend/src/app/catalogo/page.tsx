@@ -22,9 +22,9 @@ export default function CatalogoPage() {
     setLoading(true);
     try {
       const params: Record<string, any> = { page, size: PAGE_SIZE };
-      if (search.nombre) params.nombre = search.nombre;
-      if (search.categoria) params.categoria = search.categoria;
-      if (search.marca) params.marca = search.marca;
+      if (search.nombre) params.busqueda = search.nombre;
+      if (!search.nombre && search.categoria) params.categoria = search.categoria;
+      if (!search.nombre && search.marca) params.marca = search.marca;
       const { data } = await api.get<any>('/productos', { params });
       setProductos(Array.isArray(data) ? data : (data.content ?? []));
       setTotal(Array.isArray(data) ? data.length : (data.totalElements ?? 0));
